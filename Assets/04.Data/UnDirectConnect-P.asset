@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e38bc23377b9848b2703a7dff713a3, type: 3}
   m_Name: UnDirectConnect-P
   m_EditorClassIdentifier: 
-  waypoints: []
+  waypoints:
+  - {x: 0, y: -3.5, z: 0}
+  - {x: 7.7, y: -3.5, z: 0}
+  - {x: 7.7, y: 2, z: 0}

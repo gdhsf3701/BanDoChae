@@ -26,7 +26,7 @@ public class JS_ElectronMove : MonoBehaviour
         }
         else
         {
-            waypointIndexer = 0;
+            Destroy(gameObject);
         }
     }
 }

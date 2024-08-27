@@ -7,12 +7,13 @@ public class JS_Battary : MonoBehaviour
 {
     [SerializeField] private GameObject Electron;
     [SerializeField] private GameObject PositiveHole;
+    [SerializeField] private GameObject NegativeUnConnect, PositiveUnConnect;
 
     [SerializeField] private float createTime;
 
     [SerializeField] private JS_DiodSwitching switching;
 
-    [SerializeField] private GameObject mother;
+    [SerializeField] private GameObject mother, Panal;
 
     private Coroutine coroutine;
 
@@ -22,28 +23,53 @@ public class JS_Battary : MonoBehaviour
     }
     public void StartMove(bool volt)
     {
+        Panal.SetActive(!volt);
         if (volt)
         {
-            coroutine = StartCoroutine(SetVoltage());
-        }
-        else
-        {
-            StopCoroutine(coroutine);
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
             int x = mother.transform.childCount;
             for (int i = 0; i < x; i++)
             {
                 Destroy(mother.transform.GetChild(i).gameObject);
             }
+            coroutine = StartCoroutine(SetVoltage());
+        }
+        else
+        {
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
+            int x = mother.transform.childCount;
+            for (int i = 0; i < x; i++)
+            {
+                Destroy(mother.transform.GetChild(i).gameObject);
+            }
+
+            coroutine = StartCoroutine(SetUnVoltage());
         }
     }
 
     IEnumerator SetVoltage()
     {
-        for(int i  = 0; i < 21; i++)
+        while (true)
         {
             yield return new WaitForSeconds(createTime);
-            Instantiate(Electron, transform.position, Quaternion.identity ,mother.transform);
-            Instantiate (PositiveHole, transform.position, Quaternion.identity, mother.transform);
+            Instantiate(Electron, transform.position, Quaternion.identity, mother.transform);
+            Instantiate(PositiveHole, transform.position, Quaternion.identity, mother.transform);
+        }
+    }
+
+    IEnumerator SetUnVoltage()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(createTime);
+            Instantiate(PositiveUnConnect, transform.position, Quaternion.identity, mother.transform);
+            Instantiate(NegativeUnConnect, transform.position, Quaternion.identity, mother.transform);
         }
     }
 }

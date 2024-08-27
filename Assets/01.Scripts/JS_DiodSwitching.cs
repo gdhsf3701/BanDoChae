@@ -11,6 +11,11 @@ public class JS_DiodSwitching : MonoBehaviour
     public void Switching()
     {
         _banDoChaeIsCurrect = !_banDoChaeIsCurrect;
+        
+    }
+
+    public void SendEvent() 
+    { 
         BanDoChae?.Invoke(_banDoChaeIsCurrect);
     }
 }
