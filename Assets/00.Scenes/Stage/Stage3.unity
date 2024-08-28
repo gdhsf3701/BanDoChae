@@ -3913,6 +3913,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 1641888091}
   sizeLimit: 9
+  expansionAmount: 0.2
 --- !u!1 &1683780892
 GameObject:
   m_ObjectHideFlags: 0
