@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class JS_Battary : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class JS_Battary : MonoBehaviour
     [SerializeField] private JS_DiodSwitching switching;
 
     [SerializeField] private GameObject mother, Panal;
+    public UnityEvent<int> OnBattaryEvent;
 
     private Coroutine coroutine;
 
@@ -26,6 +28,7 @@ public class JS_Battary : MonoBehaviour
         Panal.SetActive(!volt);
         if (volt)
         {
+            OnBattaryEvent?.Invoke(1);
             if (coroutine != null)
             {
                 StopCoroutine(coroutine);
@@ -39,6 +42,8 @@ public class JS_Battary : MonoBehaviour
         }
         else
         {
+            OnBattaryEvent?.Invoke(0);
+
             if (coroutine != null)
             {
                 StopCoroutine(coroutine);
