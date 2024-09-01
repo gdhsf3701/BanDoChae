@@ -19,18 +19,17 @@ public class EnemyMovement : MonoBehaviour
     {
         
 
-        int value = UnityEngine.Random.Range(0, 10);
-        if (value < 3) //30%확률
-        {
+        
             //플레이어 위치 - 내 위치
             GameObject target = GameObject.Find("Player");
+        if (target = null)
+        {
+            Time.timeScale = 0f;
+        }
             moveDir = target.transform.position - transform.position;
             moveDir.Normalize(); 
-        }
-        else //70%확률fh down
-        {
-            moveDir = Vector3.down;
-        }
+        
+        
     }
 
     // Update is called once per frame
@@ -41,15 +40,17 @@ public class EnemyMovement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
        if (collision.gameObject.CompareTag("Bullet"))
-        {
-           // sm.SetScore(ScoreManager.Instance.GetScore() + 1);
-        //    int a = sm.GetScore()+1;
-            
+       {
+  
             Destroy(collision.gameObject);
 
+       }
+
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
-        
+       
     }
 }
 

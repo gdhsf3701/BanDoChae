@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerFire : MonoBehaviour
 {
     public GameObject bulletPrefab;
+    public GameObject bulletPrefab2;
+    private bool isSpecila = false;
     public GameObject firePos;
 
 
@@ -15,13 +17,42 @@ public class PlayerFire : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        int a = Random.Range(1, 3);
+        if (a == 1)
         {
-            GameObject bullet = Instantiate(bulletPrefab);
-            bullet.transform.position = firePos.transform.position;
-
-
+            isSpecila = false;
         }
+        else if (a == 2)
+            isSpecila = true;
+
+        if (isSpecila = false)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                GameObject bullet = Instantiate(bulletPrefab);
+                bullet.transform.position = firePos.transform.position;
+                StartCoroutine(Destroy());
+
+
+            }
+        }
+        else if(isSpecila = true)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                GameObject bullet = Instantiate(bulletPrefab2);
+                bullet.transform.position = firePos.transform.position;
+                StartCoroutine(Destroy());
+
+
+            }
+        }
+        
+    }
+    IEnumerator Destroy()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 
 }
