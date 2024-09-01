@@ -9,5 +9,9 @@ public class JS_SceneManager : MonoBehaviour
     {
         SceneManager.LoadScene(scene);
     }
+    public void Exit()
+    {
+        Application.Quit();
+    }
 
 }
