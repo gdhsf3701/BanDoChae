@@ -1,34 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemeyManager : MonoBehaviour
+public class EnemyManager : MonoBehaviour
 {
-  
-    private float currentTime = 0f;
-    private float creatTime = 1f;
-    public GameObject enemeyPrefab;
-    private float minTime = 1f;
-    private float maxTime = 3f;
+    public GameObject enemyPrefab; // 적 프리팹
+    public float spawnInterval = 2f;  // 적 생성 간격
 
-    private void Start()
-    {
-        creatTime = UnityEngine.Random.Range(minTime, maxTime);
-    }
+    private float timer;
 
-    private void Update()
+    void Update()
     {
-        currentTime += Time.deltaTime;
-        if(currentTime > creatTime)
+        timer += Time.deltaTime;
+
+        if (timer >= spawnInterval)
         {
-            currentTime = 0f;
-            //GameObject enemy = Instantiate(enemeyPrefab);
-            //enemy.transform.position = transform.position;
-            GameObject enemy = Instantiate(enemeyPrefab, transform);
-            creatTime = UnityEngine.Random.Range(minTime, maxTime);
+            SpawnEnemy();
+            timer = 0f;
         }
-        
     }
-  
 
+    void SpawnEnemy()
+    {
+        // 적을 스폰할 위치 결정 (예: 화면 상단에서 랜덤한 x좌표)
+        Vector2 spawnPosition = new Vector2(Random.Range(-8f, 8f), 6f);
+
+        // 적 생성
+        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+    }
 }
