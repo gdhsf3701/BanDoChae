@@ -1,56 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private Vector3 moveDir;
-    private float speed = 5f;
-  //  public ScoreManager sm;
+    public float moveSpeed = 2f; // 적의 이동 속도
 
-   
-
-    private void Awake()
-    {
-      ///  sm = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
-    }
-
-    void Start()
-    {
-        
-
-        
-            //플레이어 위치 - 내 위치
-       GameObject target = GameObject.FindGameObjectWithTag("Player");
-        if (target = null)
-        {
-            Time.timeScale = 0f;
-        }
-            moveDir = target.transform.position - transform.position;
-            moveDir.Normalize(); 
-        
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        transform.position += moveDir * speed * Time.deltaTime; //이동
+        Move();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    void Move()
     {
-       if (collision.gameObject.CompareTag("Bullet"))
-       {
-  
-            Destroy(collision.gameObject);
+        // 적이 아래로 이동
+        transform.Translate(Vector2.down * moveSpeed * Time.deltaTime);
+    }
 
-       }
-
-        if (collision.gameObject.CompareTag("Wall"))
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
         {
+            // 플레이어와 충돌 시 행동 (예: 플레이어 체력 감소, 게임 오버 등)
             Destroy(gameObject);
         }
-       
+        else if (other.CompareTag("Bullet"))
+        {
+            // 총알에 맞으면 적 파괴
+            Destroy(gameObject);
+        }
     }
 }
-
