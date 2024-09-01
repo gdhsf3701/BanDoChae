@@ -9,9 +9,18 @@ EditorBuildSettings:
     path: Assets/00.Scenes/Test/KAY_Test1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/00.Scenes/Stage/StartScene.unity
+    guid: 820bea0fd2d56a14fbcf477be96ac667
+  - enabled: 1
     path: Assets/00.Scenes/Stage/Stage1.unity
     guid: 6d54d1f3dff1d1544bdcc76455698543
   - enabled: 1
     path: Assets/00.Scenes/Stage/Stage2.unity
     guid: 7bbd1ab0c6e73204ea8a503848020784
+  - enabled: 1
+    path: Assets/00.Scenes/Stage/Stage3.unity
+    guid: b68b6d2a005d7d44a8e1302d7833f809
+  - enabled: 1
+    path: Assets/00.Scenes/Stage/EndScene.unity
+    guid: 70fcc51a61fdfcc45b06bc7a0d55877d
   m_configObjects: {}
