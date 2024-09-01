@@ -21,7 +21,7 @@ public class EnemyMovement : MonoBehaviour
 
         
             //플레이어 위치 - 내 위치
-            GameObject target = GameObject.Find("Player");
+       GameObject target = GameObject.FindGameObjectWithTag("Player");
         if (target = null)
         {
             Time.timeScale = 0f;
