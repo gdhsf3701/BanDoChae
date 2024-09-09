@@ -15,17 +15,13 @@ public class EnemyMovement : MonoBehaviour
         transform.Translate(Vector2.down * moveSpeed * Time.deltaTime);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.CompareTag("Player"))
+        // 충돌한 객체가 "Bullet" 태그를 가졌는지 확인
+        if (collision.gameObject.CompareTag("Bullet"))
         {
-            // 플레이어와 충돌 시 행동 (예: 플레이어 체력 감소, 게임 오버 등)
-            Destroy(gameObject);
-        }
-        else if (other.CompareTag("Bullet"))
-        {
-            // 총알에 맞으면 적 파괴
-            Destroy(gameObject);
+            Destroy(gameObject); // 적 오브젝트 삭제
+            Destroy(collision.gameObject); // 총알 오브젝트 삭제
         }
     }
 }
