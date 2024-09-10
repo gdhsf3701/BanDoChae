@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/00.Scenes/Stage/Stage3.unity
     guid: b68b6d2a005d7d44a8e1302d7833f809
   - enabled: 1
+    path: Assets/00.Scenes/Test/KAY_Game.unity
+    guid: 969b834798b7949458878a2b2edd8261
+  - enabled: 0
     path: Assets/00.Scenes/Stage/EndScene.unity
     guid: 70fcc51a61fdfcc45b06bc7a0d55877d
   m_configObjects: {}
